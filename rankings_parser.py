@@ -21,7 +21,7 @@ class RankingsParser:
 
     # Generate a text file to copy/paste into yahoo chrome extension
     def generate_yahoo_rankings(self):
-        str = "\n".join(self.players)
+        string = "\n".join(self.players)
         file = open("yahoo_rankings.txt", "w")
-        file.write(str)
+        file.write(string)
         file.close()
