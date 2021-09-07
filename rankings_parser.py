@@ -22,6 +22,11 @@ class RankingsParser:
 
         print(self.rankings)
 
+    # Convert self.rankings to a csv
+    def generate_ranking_summary(self):
+        df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in self.rankings.items()]))
+        df.to_csv("ranking_summary.csv")
+
     # Generate a text file to copy/paste into yahoo chrome extension
     def generate_yahoo_rankings(self):
         string = "\n".join(self.rankings["GENERAL"])

@@ -1,6 +1,8 @@
 import rankings_parser
 
-parser = rankings_parser.RankingsParser()
+if __name__ == "__main__":
+    parser = rankings_parser.RankingsParser()
 
-parser.parse()
-parser.generate_yahoo_rankings()
+    parser.parse()
+    parser.generate_ranking_summary()
+    parser.generate_yahoo_rankings()
