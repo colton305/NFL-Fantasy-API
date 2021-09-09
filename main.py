@@ -1,6 +1,7 @@
 from config import LEAGUE_IDS, TEAM_INDEXES
 from rankings_parser import RankingsParser
 from team_interface import Team
+from league_interface import League
 
 if __name__ == "__main__":
     parser = RankingsParser()
@@ -9,9 +10,14 @@ if __name__ == "__main__":
     parser.generate_ranking_summary()
     parser.generate_yahoo_rankings()
 
+    leagues = []
     teams = []
-    for i, league in enumerate(LEAGUE_IDS):
-        teams.append(Team(league, TEAM_INDEXES[i]))
-        teams[i].generate_roster()
-    for team in teams:
-        print(team.roster)
+    for league_id in LEAGUE_IDS:
+        leagues.append(League(league_id))
+        leagues[-1].find_free_agents()
+        print(leagues[-1].free_agents)
+
+    for i, index in enumerate(TEAM_INDEXES):
+        teams.append(Team(leagues[i].league_id, index))
+        teams[-1].generate_roster()
+        print(teams[-1].roster)
