@@ -3,7 +3,7 @@ import csv
 
 
 # Compare the team roster to league free agents to determine whether to add or drop
-def query_free_agents(league, team):
+def query_free_agents(league):
     # Generate free agents as a list
     free_agents = league.find_free_agents()
     # Generate roster as a list
