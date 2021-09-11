@@ -25,43 +25,43 @@ def query_free_agents(league):
                     if garbage_player[0] == player[0]:
                         worst_players.remove(garbage_player)
                 worst_players.append(player)
-                lowest_rank[player[0]] = ranking[0]
+                lowest_rank[player[0]] = int(ranking[0])
             # Parse the defensive rankings
             elif player[1] == ranking[6]:
                 for garbage_player in worst_players:
                     if garbage_player[0] == player[0]:
                         worst_players.remove(garbage_player)
                 worst_players.append(player)
-                lowest_rank[player[0]] = ranking[0]
+                lowest_rank[player[0]] = int(ranking[0])
             # Parse the kicker rankings
             elif player[1] == ranking[7]:
                 for garbage_player in worst_players:
                     if garbage_player[0] == player[0]:
                         worst_players.remove(garbage_player)
                 worst_players.append(player)
-                lowest_rank[player[0]] = ranking[0]
-            # See if any free agent is ranked higher than a team member
-            for free_agent in free_agents:
-                if free_agent[0] != "DEF" and free_agent[0] != "K":
-                    for i in range(lowest_rank[free_agent[0]]):
-                        if free_agent[1] == rankings[i][1]:
-                            if lowest_rank[free_agent[0]] > lowest_rank["WR"]:
-                                for garbage_player in worst_players:
-                                    if garbage_player[0] == free_agent[0]:
-                                        print("Drop", garbage_player, "Add", free_agent)
-                            else:
-                                for garbage_player in worst_players:
-                                    if garbage_player[0] == "WR":
-                                        print("Drop", garbage_player, "Add", free_agent)
-                elif free_agent[0] == "DEF":
-                    for i in range(lowest_rank["DEF"]):
-                        if free_agent[1] == rankings[i][6]:
-                            for garbage_player in worst_players:
-                                if garbage_player[0] == free_agent[0]:
-                                    print("Drop", garbage_player, "Add", free_agent)
-                elif free_agent[0] == "K":
-                    for i in range(lowest_rank["K"]):
-                        if free_agent[1] == rankings[i][7]:
-                            for garbage_player in worst_players:
-                                if garbage_player[0] == free_agent[0]:
-                                    print("Drop", garbage_player, "Add", free_agent)
+                lowest_rank[player[0]] = int(ranking[0])
+    # See if any free agent is ranked higher than a team member
+    for free_agent in free_agents:
+        if free_agent[0] != "DEF" and free_agent[0] != "K":
+            for i in range(lowest_rank[free_agent[0].split(",")[0]]):
+                if free_agent[1] == rankings[i][1]:
+                    if lowest_rank[free_agent[0].split(",")[0]] > lowest_rank["WR"]:
+                        for garbage_player in worst_players:
+                            if garbage_player[0] == free_agent[0]:
+                                print("Drop", garbage_player, "Add", free_agent)
+                    else:
+                        for garbage_player in worst_players:
+                            if garbage_player[0] == "WR":
+                                print("Drop", garbage_player, "Add", free_agent)
+        elif free_agent[0] == "DEF":
+            for i in range(lowest_rank["DEF"]):
+                if free_agent[1] == rankings[i][6]:
+                    for garbage_player in worst_players:
+                        if garbage_player[0] == free_agent[0]:
+                            print("Drop", garbage_player, "Add", free_agent)
+        elif free_agent[0] == "K":
+            for i in range(lowest_rank["K"]):
+                if free_agent[1] == rankings[i][7]:
+                    for garbage_player in worst_players:
+                        if garbage_player[0] == free_agent[0]:
+                            print("Drop", garbage_player, "Add", free_agent)
