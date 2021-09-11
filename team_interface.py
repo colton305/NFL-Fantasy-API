@@ -29,4 +29,4 @@ class Team:
     # Save the roster to a csv
     def save_roster(self):
         df = pd.DataFrame(self.roster)
-        df.to_csv("roster/"+self.league_id+".csv", index=False)
+        df.to_csv("rosters/"+self.league_id+".csv", index=False)
