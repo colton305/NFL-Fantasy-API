@@ -20,4 +20,5 @@ if __name__ == "__main__":
     for i, index in enumerate(TEAM_INDEXES):
         teams.append(Team(leagues[i].league_id, index))
         teams[-1].generate_roster()
+        teams[-1].save_roster()
         print(teams[-1].roster)

@@ -1,6 +1,7 @@
 
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
 from config import HEADERS
 
@@ -24,3 +25,8 @@ class Team:
                 self.roster.append([position, player])
             except AttributeError:
                 pass
+
+    # Save the roster to a csv
+    def save_roster(self):
+        df = pd.DataFrame(self.roster)
+        df.to_csv("roster/"+self.league_id+".csv")
