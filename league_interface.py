@@ -21,3 +21,4 @@ class League:
                 player = div.find("a").text
                 position = div.find("span").text.split("- ")[-1]
                 self.free_agents.append([position, player])
+        return self.free_agents
