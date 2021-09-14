@@ -6,6 +6,8 @@ import csv
 def query_free_agents(league):
     # Generate free agents as a list
     free_agents = league.find_free_agents()
+    defenses = league.find_defenses()
+    kickers = league.find_kickers()
     # Generate roster as a list
     with open("rosters/"+league.league_id+".csv", "r") as file:
         reader = csv.reader(file)
