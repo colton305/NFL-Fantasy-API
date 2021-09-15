@@ -11,7 +11,7 @@ class RankingsParser:
         for key in SOUP.keys():
             self.rankings[key] = []
 
-    def parse(self):
+    def parse_draft_rankings(self):
         # Iterate through each ranking table
         for key in SOUP.keys():
             for div in SOUP[key].find("div", class_="table-responsive"):
@@ -19,7 +19,6 @@ class RankingsParser:
                     for i, td in enumerate(tr.findAll("td")):
                         if i == 1:
                             self.rankings[key].append(td.text)
-
         print(self.rankings)
 
     # Convert self.rankings to a csv
