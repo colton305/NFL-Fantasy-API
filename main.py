@@ -7,7 +7,7 @@ from league_interface import League
 if __name__ == "__main__":
     parser = RankingsParser()
 
-    parser.parse_draft_rankings()
+    parser.parse_rankings()
     parser.generate_ranking_summary()
     parser.generate_yahoo_rankings()
 

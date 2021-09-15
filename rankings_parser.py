@@ -1,6 +1,8 @@
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 
-from config import SOUP
+from config import SOUP, HEADERS
 
 
 class RankingsParser:
@@ -20,6 +22,21 @@ class RankingsParser:
                         if i == 1:
                             self.rankings[key].append(td.text)
         print(self.rankings)
+
+    def parse_rankings(self):
+        with open("weekly_rankings.txt", "r") as file:
+            articles = file.read().split(",")
+        for i, article in enumerate(articles):
+            response = requests.get("https://www.thescore.com/news/"+article, headers=HEADERS)
+            soup = BeautifulSoup(response.content, features="html.parser")
+            for div in soup.find("div", class_="table-responsive"):
+                for tr in div.findAll("tr"):
+                    for j, td in enumerate(tr.findAll("td")):
+                        if i == 6 and j == 1:
+                            self.rankings["GENERAL"].append(td.text)
+                        else:
+                            if j == 1:
+                                self.rankings[list(SOUP.keys())[i + 1]].append(td.text)  # Access the soup keys by index
 
     # Convert self.rankings to a csv
     def generate_ranking_summary(self):
