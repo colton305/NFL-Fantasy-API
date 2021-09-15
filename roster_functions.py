@@ -21,6 +21,13 @@ def query_free_agents(league):
     lowest_rank = {"QB": 0, "RB": 0, "WR": 0, "TE": 0, "DEF": 0, "K": 0}
     for player in roster:
         for ranking in rankings:
+            # Parse the quarterback rankings
+            if player[1] == ranking[2]:
+                for garbage_player in worst_players:
+                    if garbage_player[0] == player[0]:
+                        worst_players.remove(garbage_player)
+                worst_players.append(player)
+                lowest_rank[player[0]] = int(ranking[0])
             # Parse the general rankings
             if player[1] == ranking[1]:
                 for garbage_player in worst_players:
