@@ -15,7 +15,7 @@ class League:
 
     # Find the top free agents from the league
     def find_free_agents(self):
-        for i in range(4):  # 4 because each page has 25 players and 25 * 4 is 100
+        for i in range(8):  # 8 because each page has 25 players and 25 * 8 is 200
             url = "https://football.fantasysports.yahoo.com/f1/" + self.league_id \
                   + "/players?status=A&pos=O&cut_type=9&stat1=S_S_2020&myteam=0&sort=R_PO&sdir=1&count=" + str(i * 25)
             response = requests.get(url, headers=HEADERS)
