@@ -21,6 +21,11 @@ if __name__ == "__main__":
             parser.parse_rankings()
             parser.generate_ranking_summary()
             print(parser.rankings)
+        elif command == "parse ros rankings":
+            parser = RankingsParser()
+            parser.parse_ros_rankings()
+            parser.generate_ranking_summary()
+            print(parser.rankings)
         elif command == "generate rosters":
             leagues = []
             teams = []
