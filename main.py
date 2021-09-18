@@ -4,7 +4,8 @@ from rankings_parser import RankingsParser
 from team_interface import Team
 from league_interface import League
 
-COMMANDS = ["parse draft rankings", "parse rankings"]
+COMMANDS = ["parse draft rankings", "parse rankings", "parse ros rankings", "generate rosters", "query free agents",
+            "query free agents", "quit", "exit"]
 
 if __name__ == "__main__":
     while True:
@@ -48,3 +49,7 @@ if __name__ == "__main__":
                 print()
         elif command == "quit" or command == "exit":
             break
+        elif command == "help":
+            print(COMMANDS)
+        else:
+            print("Command not recognized: type 'help' for a list commands")
