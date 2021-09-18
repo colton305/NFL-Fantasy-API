@@ -5,7 +5,7 @@ from team_interface import Team
 from league_interface import League
 
 COMMANDS = ["parse draft rankings", "parse rankings", "parse ros rankings", "generate rosters", "query free agents",
-            "query free agents", "quit", "exit"]
+            "quit", "exit"]
 
 if __name__ == "__main__":
     while True:
