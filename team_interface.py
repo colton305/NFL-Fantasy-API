@@ -25,6 +25,9 @@ class Team:
                 self.roster.append([position, player])
             except AttributeError:
                 pass
+        # Remove the players on ir
+        while len(self.roster) > 15:  # 15 is the default roster size
+            self.roster.pop(-3)
 
     # Save the roster to a csv
     def save_roster(self):
