@@ -49,13 +49,11 @@ class RankingsParser:
             for div in soup.find("div", class_="table-responsive"):
                 for tr in div.findAll("tr"):
                     for j, td in enumerate(tr.findAll("td")):
-                        if i != 2 and j == 0:
+                        if j == 0:
                             # Access the soup keys by index, split on \n
-                            self.rankings[list(SOUP.keys())[i + 1]].append(td.text.split("\n")[1])
+                            self.rankings[list(SOUP.keys())[i + 1]].append(td.text.split("\n")[-1])
                         elif i == 1 and j == 2:
                             rb_ratings.append(int(td.text))
-                        elif i == 2 and j == 0:
-                            self.rankings[list(SOUP.keys())[i + 1]].append(td.text)
                         elif i == 2 and j == 2:
                             wr_ratings.append(int(td.text))
         offset = 0
