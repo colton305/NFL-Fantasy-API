@@ -5,7 +5,7 @@ from team_interface import Team
 from league_interface import League
 
 COMMANDS = ["parse draft rankings", "parse rankings", "parse ros rankings", "generate rosters", "query free agents",
-            "quit", "exit"]
+            "start sit", "quit", "exit"]
 
 if __name__ == "__main__":
     while True:
@@ -47,6 +47,31 @@ if __name__ == "__main__":
                 print("League #" + str(leagues[-1].league_id) + ":")
                 roster_functions.query_free_agents(leagues[-1])
                 print()
+        elif command == "start sit":
+            for i, index in enumerate(TEAM_INDEXES):
+                team = Team(LEAGUE_IDS[i], index)
+                team.generate_roster()
+                ss = team.start_sit()
+                print("League #" + str(LEAGUE_IDS[i]) + ":")
+                print(team.roster[0][1])
+                wrs = 0
+                rbs = 0
+                while wrs < 2:
+                    for ranking in ss:
+                        if ranking[0] == "WR":
+                            print(ranking[1])
+                            ss.remove(ranking)
+                            break
+                    wrs += 1
+                while rbs < 2:
+                    for ranking in ss:
+                        if ranking[0] == "RB":
+                            print(ranking[1])
+                            ss.remove(ranking)
+                            break
+                    rbs += 1
+                print(team.roster[5][1])  # Print the tight end
+                print(ss[0][1])  # Print the flex
         elif command == "quit" or command == "exit":
             break
         elif command == "help":
