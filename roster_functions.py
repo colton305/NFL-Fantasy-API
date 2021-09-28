@@ -1,5 +1,6 @@
 
 import csv
+import re
 
 
 # Compare the team roster to league free agents to determine whether to add or drop
@@ -52,7 +53,7 @@ def query_free_agents(league):
     # See if any free agent is ranked higher than a team member
     for free_agent in free_agents:
         for i in range(lowest_rank[free_agent[0].split(",")[0]]):
-            if free_agent[1] == rankings[i][1]:
+            if re.sub(r"[^A-Za-z]+", '', free_agent[1]) == re.sub(r"[^A-Za-z]+", '', rankings[i][1]):
                 if lowest_rank[free_agent[0].split(",")[0]] > lowest_rank["WR"]:
                     for garbage_player in worst_players:
                         if garbage_player[0] == free_agent[0]:
